@@ -17,8 +17,15 @@ MEAN project configuration I use for development. Contains the directory structu
 To initialise a new project:
 
 ```
-$ cd project_name
+$ cd project_directory
 $ git clone https://github.com/chriskmnds/mean-clean.git .
 $ npm install --save-dev jshint-stylish gulp gulp-util gulp-jshint gulp-autoprefixer gulp-browserify gulp-concat gulp-less gulp-minify-css gulp-rename gulp-uglify gulp-nodemon express angular
 
+```
+
+To run the project:
+
+```
+$ cd project_directory
+$ gulp
 ```
