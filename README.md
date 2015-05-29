@@ -4,15 +4,15 @@ MEAN project configuration I use for development. Contains the directory structu
 
 The project structure in summary:
 
-`client` contains client-side code (styles/scripts) used in development. 
+- `client` contains client-side code (styles/scripts) used in development. 
 
-`server` contains all the Node scripts.
+- `server` contains all the Node scripts.
 
-`public` contains the final scripts/styles/markup exposed to the front-end (scripts/styles are produced after Gulp processing).
+- `public` contains the final scripts/styles/markup exposed to the front-end (scripts/styles are produced after Gulp processing).
 
-`stash` contains duplicates/notes etc.
+- `stash` contains duplicates/notes etc.
 
-`build` contains intermediary processed files from the `client` directory.
+- `build` contains intermediary processed files from the `client` directory.
 
 Gulp will watch for file changes in `client`, run the necessary tasks and populate the respective `public` and `build` folders. Gulp/nodemon also watches for changes in `server` and restart the express server. Pretty neat for development. More detailed descriptions of each folder have been included in the corresponding `README.md` files, where I felt the need to explain further.
 
