@@ -43,4 +43,4 @@ $ npm install --save-dev jshint-stylish gulp gulp-util gulp-jshint gulp-autopref
 
 ```
 
-To run the project simply execute `gulp` inside the project folder.
+To run the project execute `gulp` inside the project folder.
