@@ -1,0 +1,1 @@
+"/client/styles/other" are any other styles that do not fit into the application bundle. These may be page specific styles.

@@ -1,0 +1,3 @@
+"/client/scripts/other" are any other client-side scripts that do not fit into the application bundle. These are files that may, for example, not be reused/bundled into a module and may require runtime or on page-load configuration e.g. per page configuration for an Angular module.
+
+These could have just been placed straight in /public/scripts but better to define them here and pass through linting with Gulp (and minification) as done for the app scripts.

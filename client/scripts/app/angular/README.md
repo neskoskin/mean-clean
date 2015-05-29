@@ -1,0 +1,1 @@
+"client/scripts/app/angular" contains all the Angular scripts (modules, services, controllers, etc.)
