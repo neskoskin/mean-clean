@@ -11,3 +11,14 @@ MEAN project configuration I use for development. Contains the directory structu
 `stash` contains duplicates/notes etc.
 
 `build` contains intermediary processed files from the `client` directory.
+
+### Usage
+
+To initialise a new project:
+
+```
+$ cd project_name
+$ git clone https://github.com/chriskmnds/mean-clean.git .
+$ npm install --save-dev jshint-stylish gulp gulp-util gulp-jshint gulp-autoprefixer gulp-browserify gulp-concat gulp-less gulp-minify-css gulp-rename gulp-uglify gulp-nodemon express angular
+
+```
