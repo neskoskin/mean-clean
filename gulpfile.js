@@ -1,10 +1,18 @@
+// =======================================================
+//	-----------------------------
+//	GULP Build Script
+//	-----------------------------	
+//	Author: Christos Koumenides
+//	Javascirpt bundling/uglifying
+//	CSS bundling/minifying
+// =======================================================
 
-/****************************************	
-|	GULP Build Script					|
-|	- Author: Christos Koumenides		|
-|	- Javascirpt bundling/uglifying		|
-|	- CSS bundling/minifying			|
-*****************************************/
+// =======================================================
+// If we want to load different app bundles for each page,
+// then repeat the browserify/bundle and uglify tasks
+// and update the final watch task.
+// Rename the folders/tasks/pipes accordingly.
+// =======================================================
 
 
 // Gulp dependencies
@@ -29,8 +37,8 @@ var prefix = require('gulp-autoprefixer');
 var minifyCSS = require('gulp-minify-css');
 
 // Package.json variables
-var p = require('./package.json')
-var name = p.name;
+//var p = require('./package.json')
+//var name = p.name;
 
 //var x = require('angular');
 
@@ -62,7 +70,7 @@ gulp.task('jshint', function() {
 gulp.task('browserify-app', ['jshint'], function() {
   return gulp.src('client/scripts/app.index.js')
     .pipe(browserify())
-    .pipe(rename(name + '.app.js'))
+    .pipe(rename('app.js'))
     .pipe(gulp.dest('build'))
     .pipe(gulp.dest('public/scripts'));
 });
@@ -80,15 +88,15 @@ gulp.task('browserify-other', ['jshint'], function() {
 // BUNDLE SCRIPTS - No browserify quirks
 // -------------------------------------
 
-// Main scripts of the package
+// Main/app scripts
 gulp.task('bundle-app', ['jshint'], function() {
 	return gulp.src('client/scripts/app/**/*.js')
-	.pipe(concat(name + '.js'))
+	.pipe(concat('app.js'))
 	.pipe(gulp.dest('build'))
 	.pipe(gulp.dest('public/scripts'));
 });
 
-// Other scripts that do not belong to the main package
+// Other scripts that do not belong to the main/app package ((possibly page configuration))
 gulp.task('bundle-other', ['jshint'], function() {
 	return gulp.src('client/scripts/other/**/*.js')
 	.pipe(concat('other.js'))
@@ -100,15 +108,15 @@ gulp.task('bundle-other', ['jshint'], function() {
 // UGLIFY
 // -------------------------------------
 
-// Uglify "listit.js" and place in public/scripts
+// Uglify "foo.js" and place in public/scripts
 // Using either 'bundle-*' or 'browserify-*'
 // Bundle prefered for Angular applications
 
 // Main scripts of the package
 gulp.task('uglify-app', ['bundle-app'], function() {
-  return gulp.src('build/' + name + '.js')
+  return gulp.src('build/app.js')//gulp.src('build/' + name + '.js')
     .pipe(uglify())
-    .pipe(rename(name + '.min.js'))
+    .pipe(rename('app.min.js'))//.pipe(rename(name + '.min.js'))
     .pipe(gulp.dest('public/scripts'));
 });
 
@@ -133,7 +141,7 @@ gulp.task('uglify-other', ['bundle-other'], function() {
 // Main application styles
 gulp.task('styles-app-less', function() {
   return gulp.src('client/styles/app/less/**/*.less')
-	.pipe(concat(name + '.css'))
+	.pipe(concat('app.css'))//.pipe(concat(name + '.css'))
     .pipe(less())
     .pipe(prefix({ cascade: true }))
     .pipe(gulp.dest('build'))
@@ -156,9 +164,9 @@ gulp.task('styles-other-less', function() {
 
 // Minify main application styles
 gulp.task('minify-app', ['styles-app-less'], function() {
-  return gulp.src('build/' + name + '.css')
+  return gulp.src('build/app.css')//gulp.src('build/' + name + '.css')
     .pipe(minifyCSS())
-    .pipe(rename(name + '.min.css'))
+    .pipe(rename('app.min.css'))//.pipe(rename(name + '.min.css'))
     .pipe(gulp.dest('public/styles'));
 });
 
