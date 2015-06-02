@@ -1,6 +1,6 @@
 # MEAN clean project template
 
-MEAN project configuration I use for development. Contains the directory structure and uses Gulp for js and less processing (bundling, ugli/minificaiton) and nodemon for running the express server.
+MEAN (MongoDB, Express, Angular, Node) project configuration I use for development. Contains the directory structure and uses Gulp for js and less processing (bundling, ugli/minificaiton) and nodemon for running the express server.
 
 The project structure in summary:
 
