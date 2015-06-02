@@ -16,7 +16,7 @@ The project structure in summary:
 
 Gulp will watch for file changes in `client`, run the necessary tasks and populate the respective `public` and `build` folders. Gulp/nodemon also watches for changes in `server` and restarts the express server. Pretty neat for development. 
 
-More detailed descriptions of each folder are included in the corresponding `README.md` files, where I felt the need to explain further.
+More detailed descriptions of each folder have been included in the corresponding `README.md` files, where I felt the need to explain further.
 
 ### Usage
 
