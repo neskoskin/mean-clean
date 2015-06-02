@@ -28,16 +28,16 @@ To initialise and run a new project:
 $ git clone --bare https://github.com/chriskmnds/mean-clean.git
 $ cd mean-clean.git
 
-### Mirror-push to the new repo
+### Mirror-push to a new Github repository
 
 $ git push --mirror https://github.com/chriskmnds/new-repo.git
 
-### Remove cloned temp repo
+### Remove cloned temp repository
 
 $ cd ..
 $ rm -rf mean-clean.git  
 
-### Clone new repo and install dependencies
+### Clone new repository and install dependencies
 
 $ git clone https://github.com/chriskmnds/new-repo.git
 $ cd new-repo
