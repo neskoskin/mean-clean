@@ -7,5 +7,26 @@
   "directories": {
     "test": "test"
   },
-  "main": "server/server.js"
+  "main": "server/server.js",
+  "devDependencies": {
+    "angular": "^1.4.0",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.12.4",
+    "express": "^4.12.4",
+    "gulp": "^3.8.11",
+    "gulp-autoprefixer": "^2.3.0",
+    "gulp-browserify": "^0.5.1",
+    "gulp-concat": "^2.5.2",
+    "gulp-jshint": "^1.11.0",
+    "gulp-less": "^3.0.3",
+    "gulp-minify-css": "^1.1.1",
+    "gulp-nodemon": "^2.0.3",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.2.0",
+    "gulp-util": "^3.0.4",
+    "jshint-stylish": "^2.0.0",
+    "jsonwebtoken": "^5.0.2",
+    "mongoose": "^4.0.4",
+    "morgan": "^1.5.3"
+  }
 }

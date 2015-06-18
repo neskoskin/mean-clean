@@ -72,7 +72,7 @@ gulp.task('browserify-app', ['jshint'], function() {
     .pipe(browserify())
     .pipe(rename('app.js'))
     .pipe(gulp.dest('build'))
-    .pipe(gulp.dest('public/scripts'));
+    .pipe(gulp.dest('public/app'));
 });
 
 // Other scripts that do not belong to the main package
@@ -81,7 +81,7 @@ gulp.task('browserify-other', ['jshint'], function() {
     .pipe(browserify())
     .pipe(rename('other.js'))
     .pipe(gulp.dest('build'))
-    .pipe(gulp.dest('public/scripts'));
+    .pipe(gulp.dest('public/assets/js'));
 });
 
 // -------------------------------------
@@ -93,7 +93,7 @@ gulp.task('bundle-app', ['jshint'], function() {
 	return gulp.src('client/scripts/app/**/*.js')
 	.pipe(concat('app.js'))
 	.pipe(gulp.dest('build'))
-	.pipe(gulp.dest('public/scripts'));
+	.pipe(gulp.dest('public/app'));
 });
 
 // Other scripts that do not belong to the main/app package ((possibly page configuration))
@@ -101,7 +101,7 @@ gulp.task('bundle-other', ['jshint'], function() {
 	return gulp.src('client/scripts/other/**/*.js')
 	.pipe(concat('other.js'))
 	.pipe(gulp.dest('build'))
-	.pipe(gulp.dest('public/scripts'));
+	.pipe(gulp.dest('public/assets/js'));
 });
 
 // -------------------------------------
@@ -117,7 +117,7 @@ gulp.task('uglify-app', ['bundle-app'], function() {
   return gulp.src('build/app.js')//gulp.src('build/' + name + '.js')
     .pipe(uglify())
     .pipe(rename('app.min.js'))//.pipe(rename(name + '.min.js'))
-    .pipe(gulp.dest('public/scripts'));
+    .pipe(gulp.dest('public/app'));
 });
 
 // Other scripts that do not belong to the main package
@@ -125,7 +125,7 @@ gulp.task('uglify-other', ['bundle-other'], function() {
   return gulp.src('build/other.js')
     .pipe(uglify())
     .pipe(rename('other.min.js'))
-    .pipe(gulp.dest('public/scripts'));
+    .pipe(gulp.dest('public/assets/js'));
 });
 
 /*************************************************************/
@@ -145,7 +145,7 @@ gulp.task('styles-app-less', function() {
     .pipe(less())
     .pipe(prefix({ cascade: true }))
     .pipe(gulp.dest('build'))
-    .pipe(gulp.dest('public/styles'));
+    .pipe(gulp.dest('public/assets/css'));
 });
 
 // Other styles not part of main app
@@ -155,7 +155,7 @@ gulp.task('styles-other-less', function() {
     .pipe(less())
     .pipe(prefix({ cascade: true }))
     .pipe(gulp.dest('build'))
-    .pipe(gulp.dest('public/styles'));
+    .pipe(gulp.dest('public/assets/css'));
 });
 
 // -------------------------------------
@@ -167,7 +167,7 @@ gulp.task('minify-app', ['styles-app-less'], function() {
   return gulp.src('build/app.css')//gulp.src('build/' + name + '.css')
     .pipe(minifyCSS())
     .pipe(rename('app.min.css'))//.pipe(rename(name + '.min.css'))
-    .pipe(gulp.dest('public/styles'));
+    .pipe(gulp.dest('public/assets/css'));
 });
 
 // Minify other application styles
@@ -175,7 +175,7 @@ gulp.task('minify-other', ['styles-other-less'], function() {
   return gulp.src('build/other.css')
     .pipe(minifyCSS())
     .pipe(rename('other.min.css'))
-    .pipe(gulp.dest('public/styles'));
+    .pipe(gulp.dest('public/assets/css'));
 });
 
 /*************************************************************/
@@ -210,7 +210,7 @@ gulp.task('nodemon', function() {
 		//.on('start', ['watch'])
 		//.on('change', function() {console.log('STARTED');})
 		.on('restart', function() {
-			console.log('Restarted!');
+			console.log('[~console] Server restarted!');
 		});
 });
 
