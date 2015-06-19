@@ -1,6 +1,6 @@
 # MEAN clean app
 
-MEAN project configuration I use for development. Contains the directory structure and uses Gulp for js and less processing (bundling, ugli/minificaiton) and nodemon for running the express server.
+MEAN project configuration I use for development. Contains the directory structure for a MEAN application. Uses Gulp for js and less processing (bundling, ugli/minificaiton), and nodemon for running the express server.
 
 The project structure in summary:
 
