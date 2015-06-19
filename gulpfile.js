@@ -72,7 +72,7 @@ gulp.task('browserify-app', ['jshint'], function() {
     .pipe(browserify())
     .pipe(rename('app.js'))
     .pipe(gulp.dest('build'))
-    .pipe(gulp.dest('public/app'));
+    .pipe(gulp.dest('public/assets/js'));
 });
 
 // Other scripts that do not belong to the main package
@@ -93,7 +93,7 @@ gulp.task('bundle-app', ['jshint'], function() {
 	return gulp.src('client/scripts/app/**/*.js')
 	.pipe(concat('app.js'))
 	.pipe(gulp.dest('build'))
-	.pipe(gulp.dest('public/app'));
+	.pipe(gulp.dest('public/assets/js'));
 });
 
 // Other scripts that do not belong to the main/app package ((possibly page configuration))
@@ -117,7 +117,7 @@ gulp.task('uglify-app', ['bundle-app'], function() {
   return gulp.src('build/app.js')//gulp.src('build/' + name + '.js')
     .pipe(uglify())
     .pipe(rename('app.min.js'))//.pipe(rename(name + '.min.js'))
-    .pipe(gulp.dest('public/app'));
+    .pipe(gulp.dest('public/assets/js'));
 });
 
 // Other scripts that do not belong to the main package

@@ -12,11 +12,12 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var mongoose = require('mongoose');
 
-var apiRoutes = require('./routes/api');
-var otherRoutes = require('./routes/other');
+//var apiRoutes = require('./routes/api');
+//var otherRoutes = require('./routes/other');
+
+var config = require('./config');
 
 var app = express();
-var port = process.env.PORT || 1337;
 
 
 // APP Configuration
@@ -37,92 +38,49 @@ app.use(function(req, res, next) {
 // log all requests to the console
 app.use(morgan('dev'));
 
-
 // connect to out database
-mongoose.connect('mongodb://localhost/test');
-
+mongoose.connect(config.database);
 
 
 // =========================================
 // ROUTING
 // =========================================
 
-
 // Static directory
 // -----------------------------------------
-
 app.use(express.static(__dirname + '/../public'));
 
-
-
-// ++++++++++++++++++++++++++++++++++++++++
-// ++++++++++++++++++++++++++++++++++++++++
-
-
-// Test 1 2 3
-
-var router = express.Router();
-
-router.post('*', function(request, response){
-    console.log('got the post!');
-    var filepath = "./temp/.xml" + request.param('setid');
-    response.send(filepath);
-});
-
-app.use('/getXml', router);
-
-
-// ++++++++++++++++++++++++++++++++++++++++
-// ++++++++++++++++++++++++++++++++++++++++
-
-
-
-
-// Basic route, home page
+// Home Route
 // -----------------------------------------
-
 app.get('/', function(req, res) {
-	res.sendFile(path.join(__dirname + '/../public/app/views/index.html'));
+	res.sendFile(path.join(__dirname + '/../public/views/index.html'));
 });
-
 
 // API Routes
 // -----------------------------------------
-
 // REGISTER the api router to the application
 // all of the API routes will be prefixed with /api
-app.use('/api', apiRoutes.apiRouter);
-
-// another way is to export a function and send the 'app' variable
-// to do the registration from inside the route's file (see Login Routes - next)
-
+//app.use('/api', apiRoutes.apiRouter);
+var apiRoutes = require('./routes/api')(app, express);
+app.use('/api', apiRoutes);
 
 // Login Routes
 // -----------------------------------------
-
 // Another way of defining routes, usefull for when we want the app variable
 // e.g. using app.route('foo') and defining both GET and POST actions on it
 //require('./routes/login')(app);
 
-
 // Other Routes
 // -----------------------------------------
-
 // REGISTER other routes to the application
 // Must come last. The route is a 303 redirect to root
-app.use('/*', otherRoutes.otherRouter); // must come last
-
-
-
-// =========================================
-// OTHER STUFF
-// =========================================
-
+var otherRoutes = require('./routes/other')(app, express);
+app.use('*', otherRoutes); // must come last
 
 
 // =========================================
 // START THE SERSVER
 // =========================================
 
-app.listen(port);
-console.log('[~console] 1337 is the magic port!');
+app.listen(config.port);
+console.log('[~console] ' + config.port + ' is the magic port!');
