@@ -33,3 +33,10 @@ function arrayIndexOf(myArray, searchTerm) {
     return -1;
 }
 
+// Polyfill for string.startsWith()
+// Taken from http://stackoverflow.com/questions/646628/javascript-startswith
+if (typeof(String.prototype.startsWith) === 'undefined') {
+    String.prototype.startsWith = function(str) {
+        return this.slice(0, str.length) === str;
+    };
+}
