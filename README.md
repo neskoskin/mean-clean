@@ -39,8 +39,8 @@ $ rm -rf mean-clean.git
 
 $ git clone https://github.com/chriskmnds/new-repo.git
 $ cd new-repo
-$ npm install --save-dev jshint-stylish gulp gulp-util gulp-jshint gulp-autoprefixer gulp-browserify gulp-concat gulp-less gulp-minify-css gulp-rename gulp-uglify gulp-nodemon express angular
+$ npm install --save-dev jshint-stylish gulp gulp-util gulp-jshint gulp-autoprefixer gulp-browserify gulp-concat gulp-less gulp-minify-css gulp-rename gulp-uglify gulp-nodemon express angular body-parser morgan mongoose jsonwebtoken bcrypt-nodejs
 
 ```
 
-To run the project simply execute `gulp` inside the project folder.
+To run the project simply execute `gulp` inside the project folder. Make sure MongoDB is running locally.
