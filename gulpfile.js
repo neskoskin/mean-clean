@@ -42,6 +42,11 @@ var minifyCSS = require('gulp-minify-css');
 
 //var x = require('angular');
 
+function swallowError (error) {
+  console.log(error.toString());
+  this.emit('end');
+}
+
 /*************************************************************/
 /************** JAVASCRIPT ***********************************/
 /*************************************************************/
@@ -70,6 +75,7 @@ gulp.task('jshint', function() {
 gulp.task('browserify-app', ['jshint'], function() {
   return gulp.src('client/scripts/app.index.js')
     .pipe(browserify())
+    .on('error', swallowError)
     .pipe(rename('app.js'))
     .pipe(gulp.dest('build'))
     .pipe(gulp.dest('public/assets/js'));
@@ -79,6 +85,7 @@ gulp.task('browserify-app', ['jshint'], function() {
 gulp.task('browserify-other', ['jshint'], function() {
   return gulp.src('client/scripts/other.index.js')
     .pipe(browserify())
+    .on('error', swallowError)
     .pipe(rename('other.js'))
     .pipe(gulp.dest('build'))
     .pipe(gulp.dest('public/assets/js'));
@@ -92,6 +99,7 @@ gulp.task('browserify-other', ['jshint'], function() {
 gulp.task('bundle-app', ['jshint'], function() {
 	return gulp.src('client/scripts/app/**/*.js')
 	.pipe(concat('app.js'))
+	.on('error', swallowError)
 	.pipe(gulp.dest('build'))
 	.pipe(gulp.dest('public/assets/js'));
 });
@@ -100,6 +108,7 @@ gulp.task('bundle-app', ['jshint'], function() {
 gulp.task('bundle-other', ['jshint'], function() {
 	return gulp.src('client/scripts/other/**/*.js')
 	.pipe(concat('other.js'))
+	.on('error', swallowError)
 	.pipe(gulp.dest('build'))
 	.pipe(gulp.dest('public/assets/js'));
 });
@@ -116,6 +125,7 @@ gulp.task('bundle-other', ['jshint'], function() {
 gulp.task('uglify-app', ['bundle-app'], function() {
   return gulp.src('build/app.js')//gulp.src('build/' + name + '.js')
     .pipe(uglify())
+    .on('error', swallowError)
     .pipe(rename('app.min.js'))//.pipe(rename(name + '.min.js'))
     .pipe(gulp.dest('public/assets/js'));
 });
@@ -124,6 +134,7 @@ gulp.task('uglify-app', ['bundle-app'], function() {
 gulp.task('uglify-other', ['bundle-other'], function() {
   return gulp.src('build/other.js')
     .pipe(uglify())
+    .on('error', swallowError)
     .pipe(rename('other.min.js'))
     .pipe(gulp.dest('public/assets/js'));
 });
@@ -142,7 +153,9 @@ gulp.task('uglify-other', ['bundle-other'], function() {
 gulp.task('styles-app-less', function() {
   return gulp.src('client/styles/app/less/**/*.less')
 	.pipe(concat('app.css'))//.pipe(concat(name + '.css'))
+	.on('error', swallowError)
     .pipe(less())
+    .on('error', swallowError)
     .pipe(prefix({ cascade: true }))
     .pipe(gulp.dest('build'))
     .pipe(gulp.dest('public/assets/css'));
@@ -152,7 +165,9 @@ gulp.task('styles-app-less', function() {
 gulp.task('styles-other-less', function() {
   return gulp.src('client/styles/other/less/**/*.less')
     .pipe(concat('other.css'))
+    .on('error', swallowError)
     .pipe(less())
+    .on('error', swallowError)
     .pipe(prefix({ cascade: true }))
     .pipe(gulp.dest('build'))
     .pipe(gulp.dest('public/assets/css'));
@@ -166,6 +181,7 @@ gulp.task('styles-other-less', function() {
 gulp.task('minify-app', ['styles-app-less'], function() {
   return gulp.src('build/app.css')//gulp.src('build/' + name + '.css')
     .pipe(minifyCSS())
+    .on('error', swallowError)
     .pipe(rename('app.min.css'))//.pipe(rename(name + '.min.css'))
     .pipe(gulp.dest('public/assets/css'));
 });
@@ -174,6 +190,7 @@ gulp.task('minify-app', ['styles-app-less'], function() {
 gulp.task('minify-other', ['styles-other-less'], function() {
   return gulp.src('build/other.css')
     .pipe(minifyCSS())
+    .on('error', swallowError)
     .pipe(rename('other.min.css'))
     .pipe(gulp.dest('public/assets/css'));
 });
